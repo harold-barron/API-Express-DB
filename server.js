@@ -17,14 +17,14 @@ app.listen(port, () => {
 
 app.get('/explorers',async(req,res) =>
 {
-  const allExplorers = await prisma.explorer.findMany({});
+  const allExplorers = await prisma.nuevoexplorer.findMany({});
   res.json(allExplorers);
 })
 
 app.get('/explorers/:id',async(req,res)=>
 {
   const id= req.params.id;
-  const explorer = await prisma.explorer.findUnique({where:{id: parseInt(id)}});
+  const explorer = await prisma.nuevoexplorer.findUnique({where:{id: parseInt(id)}});
   res.json(explorer);
 })
 
@@ -36,14 +36,14 @@ app.post('/explorers', async(req,res) =>
     mission: req.body.mission
   };
   const message = 'Explorer creado.';
-  await prisma.explorer.create({data: explorer});
+  await prisma.nuevoexplorer.create({data: explorer});
   return res.json({message});
 })
 
 app.put('/explorers/:id', async (req, res) => {
 	const id = parseInt(req.params.id);
 
-	await prisma.explorer.update({
+	await prisma.nuevoexplorer.update({
 		where: {
 			id: id
 		},
@@ -57,6 +57,6 @@ app.put('/explorers/:id', async (req, res) => {
 
 app.delete('/explorers/:id', async (req, res) => {
 	const id = parseInt(req.params.id);
-	await prisma.explorer.delete({where: {id: id}});
+	await prisma.nuevoexplorer.delete({where: {id: id}});
 	return res.json({message: "Eliminado correctamente"});
 });
