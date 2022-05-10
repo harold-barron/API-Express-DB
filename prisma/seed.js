@@ -44,6 +44,19 @@ const prisma = new PrismaClient();
     });
 
     console.log('Create 3 explorers');
+
+
+    const newParameter1 = await prisma.newExplorerParameters.upsert({
+      where: {name:"Explorer1 "},
+      update: {},
+      create: {
+        name: "Explorer 1",
+        lang: "English",
+        missionComander: "Carlo",
+        enrollments: 1,
+        hasCertification: true
+      },
+    });
   } catch(e) {
     console.error(e);
     process.exit(1);
@@ -51,3 +64,4 @@ const prisma = new PrismaClient();
     await prisma.$disconnect();
   }
 })();
+
