@@ -46,7 +46,7 @@ const prisma = new PrismaClient();
     console.log('Create 3 explorers');
 
 
-    const newParameter1 = await prisma.newExplorerParameters.upsert({
+    const newParameter1 = await prisma.parameters.upsert({
       where: {name:"Explorer1 "},
       update: {},
       create: {
@@ -57,6 +57,7 @@ const prisma = new PrismaClient();
         hasCertification: true
       },
     });
+    
   } catch(e) {
     console.error(e);
     process.exit(1);
