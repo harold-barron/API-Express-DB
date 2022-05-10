@@ -71,3 +71,16 @@ app.get('/newParams/:id', async(req,res) =>{
   const explorerWithID = await prisma.parameters.findUnique({where:{id:id}});
   return res.json(explorerWithID)
 })
+
+app.post('/newParams', async(req,res) =>{
+  const newParams={
+    name: req.body.name,
+    lang: req.body.lang,
+    missionComander: req.body.missionComander,
+    enrollments: req.body.enrollments,
+    hasCertification: req.body.hasCertification
+  };
+  const message = 'Explorer creado.';
+  await prisma.parameters.create({data: newParams});
+  return res.json({message});
+})
