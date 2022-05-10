@@ -65,3 +65,9 @@ app.get('/newParams', async(req,res) =>{
   const allNewExplorers = await prisma.parameters.findMany({});
   return res.json(allNewExplorers);
 })
+
+app.get('/newParams/:id', async(req,res) =>{
+  const id = parseInt(req.params.id);
+  const explorerWithID = await prisma.parameters.findUnique({where:{id:id}});
+  return res.json(explorerWithID)
+})
