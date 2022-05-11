@@ -98,3 +98,9 @@ app.put('/newParams/:id', async(req,res)=>{
   })
   return res.json({message: "Mission Comander actualizado"});
 })
+ app.delete('/newParams/:id', async(req,res)=>{
+    id = parseInt(req.params.id);
+    await prisma.parameters.delete({where: {id:id}});
+    return res.json({message: "Explorer eliminado"});
+
+ })
