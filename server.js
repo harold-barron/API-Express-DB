@@ -84,3 +84,17 @@ app.post('/newParams', async(req,res) =>{
   await prisma.parameters.create({data: newParams});
   return res.json({message});
 })
+
+app.put('/newParams/:id', async(req,res)=>{
+  const id = parseInt(req.params.id);
+
+  await prisma.parameters.update({
+    where:{
+      id:id
+    },
+    data:{
+      missionComander: req.body.missionComander
+    }
+  })
+  return res.json({message: "Mission Comander actualizado"});
+})
